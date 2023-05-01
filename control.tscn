@@ -1,0 +1,306 @@
+[gd_scene load_steps=7 format=3 uid="uid://505fdp18w7ao"]
+
+[ext_resource type="Script" path="res://Scripts/print.gd" id="1_v7nw6"]
+[ext_resource type="Script" path="res://Scripts/Save.gd" id="2_cprm7"]
+[ext_resource type="Script" path="res://Scripts/Load.gd" id="3_x3ya6"]
+[ext_resource type="Script" path="res://Scripts/PlayMusic.gd" id="4_dgcbb"]
+[ext_resource type="Script" path="res://Scripts/PlaySound.gd" id="5_6hex6"]
+[ext_resource type="Script" path="res://Scripts/StopSounds.gd" id="6_b7xhu"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SettingsMenu" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -137.5
+offset_top = -137.5
+offset_right = 137.5
+offset_bottom = 137.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SettingsMenu"]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 7.0
+offset_right = 259.0
+offset_bottom = 257.0
+
+[node name="TabBar" type="TabBar" parent="SettingsMenu/VBoxContainer"]
+layout_mode = 2
+tab_alignment = 1
+tab_count = 3
+tab_0/title = "Game"
+tab_1/title = "Video"
+tab_2/title = "Sound"
+
+[node name="Label" type="Label" parent="SettingsMenu/VBoxContainer"]
+layout_mode = 2
+text = "Settings"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="SettingsMenu/VBoxContainer"]
+layout_mode = 2
+
+[node name="GameSettings" type="VBoxContainer" parent="SettingsMenu/VBoxContainer"]
+layout_mode = 2
+
+[node name="NameBox" type="HBoxContainer" parent="SettingsMenu/VBoxContainer/GameSettings"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="LineEdit" type="LineEdit" parent="SettingsMenu/VBoxContainer/GameSettings/NameBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.15
+placeholder_text = "Enter Name..."
+
+[node name="Label" type="Label" parent="SettingsMenu/VBoxContainer/GameSettings/NameBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Name"
+horizontal_alignment = 2
+
+[node name="Difficulty" type="HBoxContainer" parent="SettingsMenu/VBoxContainer/GameSettings"]
+layout_mode = 2
+
+[node name="OptionButton" type="OptionButton" parent="SettingsMenu/VBoxContainer/GameSettings/Difficulty"]
+layout_mode = 2
+item_count = 3
+selected = 1
+popup/item_0/text = "Easy"
+popup/item_0/id = 0
+popup/item_1/text = "Normal"
+popup/item_1/id = 1
+popup/item_2/text = "Hard"
+popup/item_2/id = 2
+
+[node name="Label" type="Label" parent="SettingsMenu/VBoxContainer/GameSettings/Difficulty"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Difficulty"
+horizontal_alignment = 2
+
+[node name="CheckBox" type="CheckBox" parent="SettingsMenu/VBoxContainer/GameSettings"]
+layout_mode = 2
+button_pressed = true
+text = "Rumble"
+alignment = 2
+
+[node name="VideoSettings" type="VBoxContainer" parent="SettingsMenu/VBoxContainer"]
+visible = false
+layout_mode = 2
+
+[node name="FullScreen" type="CheckBox" parent="SettingsMenu/VBoxContainer/VideoSettings"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/h_separation = 0
+text = "Full Screen"
+alignment = 2
+
+[node name="Vsync" type="CheckBox" parent="SettingsMenu/VBoxContainer/VideoSettings"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/h_separation = 0
+text = "Vsync"
+alignment = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="SettingsMenu/VBoxContainer/VideoSettings"]
+layout_mode = 2
+
+[node name="OptionButton" type="OptionButton" parent="SettingsMenu/VBoxContainer/VideoSettings/HBoxContainer"]
+layout_mode = 2
+item_count = 3
+selected = 0
+fit_to_longest_item = false
+popup/item_0/text = "640x480"
+popup/item_0/id = 0
+popup/item_1/text = "1280x720"
+popup/item_1/id = 1
+popup/item_2/text = "1920x1080"
+popup/item_2/id = 2
+
+[node name="OptionLabel" type="Label" parent="SettingsMenu/VBoxContainer/VideoSettings/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Resolution"
+horizontal_alignment = 2
+
+[node name="Spacer" type="Control" parent="SettingsMenu/VBoxContainer/VideoSettings"]
+custom_minimum_size = Vector2(0, 45)
+layout_mode = 2
+
+[node name="ApplyButton" type="Button" parent="SettingsMenu/VBoxContainer/VideoSettings"]
+layout_mode = 2
+size_flags_vertical = 8
+text = "Apply"
+
+[node name="SoundSettings" type="VBoxContainer" parent="SettingsMenu/VBoxContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Master" type="HBoxContainer" parent="SettingsMenu/VBoxContainer/SoundSettings"]
+layout_mode = 2
+
+[node name="MasterSlider" type="HSlider" parent="SettingsMenu/VBoxContainer/SoundSettings/Master"]
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 1.0
+step = 0.01
+value = 1.0
+tick_count = 5
+
+[node name="Label" type="Label" parent="SettingsMenu/VBoxContainer/SoundSettings/Master"]
+custom_minimum_size = Vector2(75, 0)
+layout_mode = 2
+text = "Master"
+horizontal_alignment = 1
+
+[node name="Music" type="HBoxContainer" parent="SettingsMenu/VBoxContainer/SoundSettings"]
+layout_mode = 2
+
+[node name="MusicSlider" type="HSlider" parent="SettingsMenu/VBoxContainer/SoundSettings/Music"]
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 1.0
+step = 0.01
+value = 1.0
+tick_count = 5
+
+[node name="Label" type="Label" parent="SettingsMenu/VBoxContainer/SoundSettings/Music"]
+custom_minimum_size = Vector2(75, 0)
+layout_mode = 2
+text = "Music"
+horizontal_alignment = 1
+
+[node name="Sound" type="HBoxContainer" parent="SettingsMenu/VBoxContainer/SoundSettings"]
+layout_mode = 2
+
+[node name="SoundSlider" type="HSlider" parent="SettingsMenu/VBoxContainer/SoundSettings/Sound"]
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 1.0
+step = 0.01
+value = 1.0
+tick_count = 5
+
+[node name="Label" type="Label" parent="SettingsMenu/VBoxContainer/SoundSettings/Sound"]
+custom_minimum_size = Vector2(75, 0)
+layout_mode = 2
+text = "Sound"
+horizontal_alignment = 1
+
+[node name="Buttons" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Print" type="Button" parent="Buttons"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 80.0
+offset_top = 50.0
+offset_right = 205.0
+offset_bottom = 100.0
+grow_horizontal = 2
+text = "Print Settings"
+script = ExtResource("1_v7nw6")
+
+[node name="Save" type="Button" parent="Buttons"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 230.0
+offset_top = 50.0
+offset_right = 355.0
+offset_bottom = 100.0
+grow_horizontal = 2
+text = "Save Settings"
+script = ExtResource("2_cprm7")
+
+[node name="Load" type="Button" parent="Buttons"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 380.0
+offset_top = 50.0
+offset_right = 505.0
+offset_bottom = 100.0
+grow_horizontal = 2
+text = "Load Settings"
+script = ExtResource("3_x3ya6")
+
+[node name="PlayMusic" type="Button" parent="Buttons"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 80.0
+offset_top = 400.0
+offset_right = 205.0
+offset_bottom = 450.0
+grow_horizontal = 2
+text = "Play Music"
+script = ExtResource("4_dgcbb")
+
+[node name="snd_music" type="AudioStreamPlayer" parent="Buttons/PlayMusic"]
+unique_name_in_owner = true
+volume_db = -15.0
+
+[node name="PlaySound" type="Button" parent="Buttons"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 230.0
+offset_top = 400.0
+offset_right = 355.0
+offset_bottom = 450.0
+grow_horizontal = 2
+text = "Play Sound"
+script = ExtResource("5_6hex6")
+
+[node name="snd_sound" type="AudioStreamPlayer" parent="Buttons/PlaySound"]
+unique_name_in_owner = true
+
+[node name="StopSounds" type="Button" parent="Buttons"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 380.0
+offset_top = 400.0
+offset_right = 505.0
+offset_bottom = 450.0
+grow_horizontal = 2
+text = "Stop Sounds"
+script = ExtResource("6_b7xhu")
+
+[connection signal="toggled" from="SettingsMenu/VBoxContainer/GameSettings/CheckBox" to="SettingsMenu/VBoxContainer/GameSettings" method="_on_check_box_toggled"]
+[connection signal="item_selected" from="SettingsMenu/VBoxContainer/VideoSettings/HBoxContainer/OptionButton" to="SettingsMenu/VBoxContainer/VideoSettings" method="_on_option_button_item_selected"]
+[connection signal="pressed" from="SettingsMenu/VBoxContainer/VideoSettings/ApplyButton" to="SettingsMenu/VBoxContainer/VideoSettings" method="_on_apply_button_pressed"]
+[connection signal="pressed" from="Buttons/Print" to="Buttons/Print" method="_on_pressed"]
+[connection signal="pressed" from="Buttons/Save" to="Buttons/Save" method="_on_pressed"]
+[connection signal="configLoad" from="Buttons/Load" to="SettingsMenu/VBoxContainer/GameSettings" method="_on_load_config_load"]
+[connection signal="configLoad" from="Buttons/Load" to="SettingsMenu/VBoxContainer/VideoSettings" method="_on_load_config_load"]
+[connection signal="configLoad" from="Buttons/Load" to="SettingsMenu/VBoxContainer/SoundSettings" method="_on_load_config_load"]
+[connection signal="pressed" from="Buttons/Load" to="Buttons/Load" method="_on_pressed"]
+[connection signal="pressed" from="Buttons/PlayMusic" to="Buttons/PlayMusic" method="_on_pressed"]
+[connection signal="pressed" from="Buttons/PlaySound" to="Buttons/PlaySound" method="_on_pressed"]
+[connection signal="pressed" from="Buttons/StopSounds" to="Buttons/StopSounds" method="_on_pressed"]
+[connection signal="stopSound" from="Buttons/StopSounds" to="Buttons/PlayMusic" method="_on_stop_sounds_stop_sound"]
+[connection signal="stopSound" from="Buttons/StopSounds" to="Buttons/PlaySound" method="_on_stop_sounds_stop_sound"]
